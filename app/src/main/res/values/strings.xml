@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Covid Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_news_welcome">These are all news</string>
+    <string name="news_welcome">These are news:</string>
+    <string name="papers_welcome">These are papers:</string>
+    <string name="tab_label_all">All Events</string>
+    <string name="tab_label_news">News</string>
+    <string name="tab_label_paper">Paper</string>
 </resources>
