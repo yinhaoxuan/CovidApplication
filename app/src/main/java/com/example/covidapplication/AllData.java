@@ -38,9 +38,8 @@ public class AllData implements EventManager {
     }
     public void news(int page)
     {
-        URL url= null;
         try {
-                url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=paper&page="+page+"&size=20");
+                URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=paper&page="+page+"&size=20");
                 HttpURLConnection connect = (HttpURLConnection) url.openConnection();
                 InputStream input = connect.getInputStream();
                 BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -57,9 +56,9 @@ public class AllData implements EventManager {
                     JSONObject n = array1.getJSONObject(i);
                     Event e = new Event(n.getString("_id"), n.getString("type"), n.getString("title"), n.getString("time"), n.getString("source"), false);
                     allList.add(e);
-                    if(e.type=="news")
+                    if(e.type.equals("news"))
                         newsList.add(e);
-                    else if(e.type=="paper")
+                    else if(e.type.equals("paper"))
                         paperList.add(e);
                     db.eventdao().insert(e);
                 }
@@ -88,6 +87,7 @@ public class AllData implements EventManager {
 
     @Override
     public ArrayList<Event> search(String keyword) {
+
         return null;
     }
 
