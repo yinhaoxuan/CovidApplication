@@ -1,7 +1,16 @@
 package com.example.covidapplication;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Event {
-    public final String id, type, title, time, source;
+    @PrimaryKey(autoGenerate = true)
+    private int number;
+    @NonNull
+    public final String id;
+    public String type, title, time, source;
     public boolean hasRead;
 
     public Event(String id, String type, String title, String time, String source, boolean hasRead) {
@@ -12,5 +21,9 @@ public class Event {
         this.source = source;
         this.hasRead = hasRead;
         hasRead = false;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
