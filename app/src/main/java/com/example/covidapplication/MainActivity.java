@@ -1,9 +1,13 @@
 package com.example.covidapplication;
 
+import android.view.MenuItem;
 import android.widget.Toolbar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,30 +16,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label_all));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label_news));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label_paper));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        final ViewPager viewPager = findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
 
+        BottomNavigationView view = findViewById(R.id.bottom_navigation);
+        view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
+                switch (item.getItemId()) {
+                    case R.id.nav_events:
+                        fragment = new FragmentEvent();
+                        break;
+                    case R.id.nav_data:
+                        fragment = new FragmentData();
+                        break;
+                    case R.id.nav_relation:
+                        fragment = new FragmentRelation();
+                        break;
+                    default:
+                        return false;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                return true;
             }
         });
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
     }
 }

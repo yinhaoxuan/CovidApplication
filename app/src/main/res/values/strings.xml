@@ -8,4 +8,7 @@
     <string name="tab_label_all">All Events</string>
     <string name="tab_label_news">News</string>
     <string name="tab_label_paper">Paper</string>
+    <string name="title_events">Events</string>
+    <string name="title_data">Data</string>
+    <string name="title_ralations">Relations</string>
 </resources>
