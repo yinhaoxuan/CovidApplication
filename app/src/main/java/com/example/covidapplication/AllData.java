@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AllData implements EventManager {
     private Appdata db;
@@ -33,7 +34,6 @@ public class AllData implements EventManager {
         if(INSTANCE==null)
         {
             INSTANCE=new AllData(context);
-
         }
         return INSTANCE;
     }
@@ -89,32 +89,13 @@ public class AllData implements EventManager {
 
     @Override
     public ArrayList<Event> search(String keyword) {
-        try {
-            URL url = new URL("https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery?entity="+keyword);
-            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
-            InputStream input = connect.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(input));
-            String line = null;
-            System.out.println(connect.getResponseCode());
-            StringBuffer sb = new StringBuffer();
-            while ((line = in.readLine()) != null) {
-                sb.append(line);
-            }
-            String buf = sb.toString();
-            JSONObject job = new JSONObject(buf);
-            //read json
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        ArrayList<Event> key_news= (ArrayList<Event>) db.eventdao().get_news(keyword);
+        return key_news;
     }
 
     @Override
     public String getContent(String id) {
+        String c = null;
         try {
             URL url = new URL("https://covid-dashboard.aminer.cn/api/event/"+id);
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
@@ -128,6 +109,8 @@ public class AllData implements EventManager {
             }
             String buf = sb.toString();
             JSONObject job = new JSONObject(buf);
+            JSONObject data=job.getJSONObject("data");
+            c=data.getString("content");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -135,6 +118,6 @@ public class AllData implements EventManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return c;
     }
 }
