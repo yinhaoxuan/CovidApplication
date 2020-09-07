@@ -17,4 +17,9 @@ public class Event_content {
         //this.title = title;
         this.content = content;
     }
+
+    @NonNull
+    public String getId() {
+        return id;
+    }
 }

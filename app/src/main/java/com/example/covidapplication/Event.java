@@ -9,7 +9,6 @@ public class Event {
     @PrimaryKey
     @NonNull
     public final String id;
-
     public String type, title, time, source;
     public boolean hasRead;
 
