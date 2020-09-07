@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.LogRecord;
 
-public class AllData implements EventManager,PlaceManager {
+public class AllData implements EventManager {
     private Appdata db;
     public int total;
     private  static AllData INSTANCE=null;
@@ -47,7 +47,7 @@ public class AllData implements EventManager,PlaceManager {
     public void news(final int page)
     {
         try {
-            URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=paper&page="+page+"&size=20");
+            URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=all&page="+page+"&size=20");
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             InputStream input = connect.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -69,7 +69,6 @@ public class AllData implements EventManager,PlaceManager {
                     newsList.add(e);
                 else if(type.equals("paper"))
                     paperList.add(e);
-                //db.eventdao().insert(e);
             }
             JSONObject array2 = new JSONObject(job.getString("pagination"));
             total = array2.getInt("total");
@@ -94,7 +93,14 @@ public class AllData implements EventManager,PlaceManager {
 
     @Override
     public ArrayList<Event> search(String keyword) {
-        ArrayList<Event> key_news= (ArrayList<Event>) db.eventdao().get_news(keyword);
+        //ArrayList<Event> key_news= (ArrayList<Event>) db.eventdao().get_news(keyword);
+        ArrayList<Event> key_news=new ArrayList<Event>();
+        int len=allList.size();
+        for(int i=0;i<len;i++)
+        {
+            if(allList.get(i).title.indexOf(keyword)!=-1)
+                key_news.add(allList.get(i));
+        }
         return key_news;
     }
 
@@ -126,59 +132,4 @@ public class AllData implements EventManager,PlaceManager {
         return c;
     }
 
-    @Override
-    public void getData() {
-        try {
-            URL url = new URL("https://covid-dashboard.aminer.cn/api/dist/epidemic.json");
-            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
-            InputStream input = connect.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(input));
-            String line = null;
-            System.out.println(connect.getResponseCode());
-            StringBuffer sb = new StringBuffer();
-            while ((line = in.readLine()) != null) {
-                sb.append(line);
-            }
-            String buf = sb.toString();
-            JSONObject job = new JSONObject(buf);
-            Iterator<String> it=job.keys();
-            while(it.hasNext())
-            {
-                String con=(String)it.next().toString();
-                JSONObject result=job.getJSONObject(con);
-                String[] all_con=con.split("\\|");
-                String time=result.getString("begin");
-                ArrayList<Integer> confirmed=new ArrayList<Integer>(),cured=new ArrayList<Integer>(),dead=new ArrayList<Integer>();
-                JSONArray data=result.getJSONArray("data");
-                int len=data.length();
-                for(int i=0;i<len;i++)
-                {
-                    JSONArray data2= data.getJSONArray(i);
-                    confirmed.add(data2.getInt(0));
-                    cured.add(data2.getInt(2));
-                    dead.add(data2.getInt(3));
-                }
-                String name;
-                //country
-                if(all_con.length==1)
-                {
-                    name=all_con[0];
-                    Place p=new Place(name,time,confirmed,cured,dead);
-                    countryList.add(p);
-                }
-                //province
-                else if(all_con.length==2){
-                    name = all_con[1];
-                    Place p=new Place(name,time,confirmed,cured,dead);
-                    provinceList.add(p);
-                }
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 }
