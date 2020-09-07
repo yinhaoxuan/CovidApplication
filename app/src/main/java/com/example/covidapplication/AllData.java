@@ -158,6 +158,24 @@ public class AllData implements EventManager {
             //Event e=db.eventdao().get_from_id(id);
             Event_content content=new Event_content(id,c);
             db.event_contentdao().insert(content);
+            int len=allList.size();
+            for(int i=0;i<len;i++)
+            {
+                if(allList.get(i).id.equals(id))
+                    allList.get(i).hasRead=true;
+            }
+            int len2=newsList.size();
+            for(int i=0;i<len2;i++)
+            {
+                if(newsList.get(i).id.equals(id))
+                    newsList.get(i).hasRead=true;
+            }
+            int len3=paperList.size();
+            for(int i=0;i<len3;i++)
+            {
+                if(paperList.get(i).id.equals(id))
+                    paperList.get(i).hasRead=true;
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (JSONException e) {
