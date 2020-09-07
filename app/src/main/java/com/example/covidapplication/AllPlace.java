@@ -61,9 +61,6 @@ public class AllPlace implements PlaceManager {
                     Place p=new Place(name,time,confirmed,cured,dead);
                     provinceList.add(p);
                 }
-                confirmed.clear();
-                cured.clear();
-                dead.clear();
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

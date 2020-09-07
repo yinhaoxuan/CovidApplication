@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         refresh(null, "news");
         refresh(null, "paper");
 
+        placeManager = new AllPlace();
+
 //        eventManager = new myEventManager();
     }
 

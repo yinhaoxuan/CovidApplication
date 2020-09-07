@@ -29,11 +29,7 @@ public class FragmentData extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data, container, false);
-        countryPieChart = view.findViewById(R.id.country_pie);
-        provincePieChart = view.findViewById(R.id.province_pie);
-        ArrayList<PieEntry> countryList = new ArrayList<>();
-        ArrayList<PieEntry> provinceList = new ArrayList<>();
-
+        new GetDataTask(view).execute();
         return view;
     }
 }
