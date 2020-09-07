@@ -63,7 +63,7 @@ public class TabFragment extends Fragment {
         mContext = getContext();
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
-        ArrayList<Event> list;
+        ArrayList<Event> list = null;
         switch (type) {
             case "all":
                 list = MainActivity.eventManager.allList;
@@ -75,7 +75,6 @@ public class TabFragment extends Fragment {
                 list = MainActivity.eventManager.newsList;
                 break;
         }
-        list = MainActivity.eventManager.allList;
         mRecyclerView.setAdapter(new EventListAdapter(this.getActivity(), list));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRefreshLayout = view.findViewById(R.id.refresh_layout);

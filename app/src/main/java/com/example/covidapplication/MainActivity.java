@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
 
-//        eventManager = AllData.get_AllData(this);
-//        eventManager.refresh();
+        eventManager = AllData.get_AllData(this);
+        refresh(null);
 
-        eventManager = new myEventManager();
+//        eventManager = new myEventManager();
     }
 
     public void launchContentActivity(View view, final Event event) {

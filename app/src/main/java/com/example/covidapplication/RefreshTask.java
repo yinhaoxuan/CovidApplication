@@ -18,7 +18,9 @@ public class RefreshTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        mRefreshLayout.get().finishRefresh();
+        if (mRefreshLayout.get() != null) {
+            mRefreshLayout.get().finishRefresh();
+        }
     }
 
     @Override
