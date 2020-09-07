@@ -6,6 +6,11 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Event_content {
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
     @PrimaryKey
     @NonNull
     private String id;
@@ -16,10 +21,5 @@ public class Event_content {
         this.id = id;
         //this.title = title;
         this.content = content;
-    }
-
-    @NonNull
-    public String getId() {
-        return id;
     }
 }
