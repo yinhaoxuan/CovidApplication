@@ -44,10 +44,10 @@ public class AllData implements EventManager {
         }
         return INSTANCE;
     }
-    public void news(final int page)
+    public void news(final int page, String types)
     {
         try {
-            URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=all&page="+page+"&size=20");
+            URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type="+types+"&page="+page+"&size=20");
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             InputStream input = connect.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -77,29 +77,47 @@ public class AllData implements EventManager {
         }
     }
     @Override
-    public void refresh() {
+    public void refresh(String type) {
         //get number from now_line~now_line+20
         allList.clear();
         newsList.clear();
         paperList.clear();
-        news(1);
+        news(1,type);
 
     }
     @Override
-    public void getMore() {
-        news(now_page);
+    public void getMore(String type) {
+        news(now_page,type);
         now_page++;
     }
 
     @Override
-    public ArrayList<Event> search(String keyword) {
+    public ArrayList<Event> search(String keyword, String type) {
         //ArrayList<Event> key_news= (ArrayList<Event>) db.eventdao().get_news(keyword);
         ArrayList<Event> key_news=new ArrayList<Event>();
         int len=allList.size();
-        for(int i=0;i<len;i++)
+        if(type.equals("all"))
         {
-            if(allList.get(i).title.indexOf(keyword)!=-1)
-                key_news.add(allList.get(i));
+            for(int i=0;i<len;i++)
+            {
+                if(allList.get(i).title.indexOf(keyword)!=-1)
+                    key_news.add(allList.get(i));
+            }
+        }
+        else if(type.equals("news"))
+        {
+            for(int i=0;i<len;i++)
+            {
+                if(newsList.get(i).title.indexOf(keyword)!=-1)
+                    key_news.add(newsList.get(i));
+            }
+        }
+        else
+        {   for(int i=0;i<len;i++)
+            {
+                if(paperList.get(i).title.indexOf(keyword)!=-1)
+                    key_news.add(paperList.get(i));
+            }
         }
         return key_news;
     }

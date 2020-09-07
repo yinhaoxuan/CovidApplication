@@ -14,6 +14,6 @@ public interface EventManager {
     /* Get more (older) events from backend database to lists. */
     void getMore(String type);
 
-    ArrayList<Event> search(String keyword);
+    ArrayList<Event> search(String keyword, String type);
     String getContent(String id);
 }
