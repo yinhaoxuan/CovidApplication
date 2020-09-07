@@ -16,9 +16,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: return new TabFragmentAll();
-            case 1: return new TabFragmentNews();
-            case 2: return new TabFragmentPaper();
+            case 0: return TabFragment.newInstance("all");
+            case 1: return TabFragment.newInstance("news");
+            case 2: return TabFragment.newInstance("paper");
             default: return null;
         }
     }
