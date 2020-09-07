@@ -22,7 +22,6 @@ public class FragmentEvent extends Fragment {
         // Required empty public constructor
     }
 
-    private ArrayList<String> searchHistory = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,25 +52,6 @@ public class FragmentEvent extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-
-        final SearchView searchView = view.findViewById(R.id.search);
-        final ListView listView = view.findViewById(R.id.search_list);
-//        listView.setAdapter(new ArrayAdapter<String>(getContext(), , searchHistory.toArray()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Log.d("search", "onQueryTextSubmit");
-//                listView.set
-                ((MainActivity)getActivity()).launchSearchActivity(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Log.d("search", "onQueryTextChange");
-                return false;
             }
         });
 

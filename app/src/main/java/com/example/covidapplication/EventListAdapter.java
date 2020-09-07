@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             Event event = mEventList.get(mPosition);
             if (mContext instanceof MainActivity) {
                 ((MainActivity) mContext).launchContentActivity(view, event);
+            }
+            else if (mContext instanceof SearchActivity) {
+                ((SearchActivity) mContext).launchContentActivity(view, event);
             }
         }
     }

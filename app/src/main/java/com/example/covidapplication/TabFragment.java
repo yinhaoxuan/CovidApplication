@@ -3,7 +3,9 @@ package com.example.covidapplication;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.SearchView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +51,9 @@ public class TabFragment extends Fragment {
     private Context mContext;
     private RecyclerView mRecyclerView;
     private RefreshLayout mRefreshLayout;
+    private SearchView mSearchView;
+    private RecyclerView mSearchRecycler;
+    private ArrayList<String> searchHistory = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,13 +81,39 @@ public class TabFragment extends Fragment {
                 break;
         }
         mRecyclerView.setAdapter(new EventListAdapter(this.getActivity(), list));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        /*TODO: solve crash*/
+        mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getActivity()));
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mSearchView = view.findViewById(R.id.search);
+        mSearchRecycler = view.findViewById(R.id.search_recycler);
+        mSearchRecycler.setAdapter(new StringListAdapter(this.getActivity(), searchHistory, type));
+        mSearchRecycler.setLayoutManager(new WrapContentLinearLayoutManager(this.getActivity()));
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("search", "onQueryTextSubmit");
+                searchHistory.add(query);
+                ((MainActivity)getActivity()).launchSearchActivity(query, type);
+                mSearchRecycler.setVisibility(View.INVISIBLE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mSearchRecycler.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.INVISIBLE);
+                Log.d("search", "onQueryTextChange");
+                return false;
+            }
+        });
+
         mRefreshLayout = view.findViewById(R.id.refresh_layout);
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 if (mContext instanceof MainActivity) {
-                    ((MainActivity) mContext).refresh(mRefreshLayout);
+                    ((MainActivity) mContext).refresh(mRefreshLayout, type);
                 }
             }
         });
@@ -90,7 +121,7 @@ public class TabFragment extends Fragment {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 if (mContext instanceof MainActivity) {
-                    ((MainActivity) mContext).getMore(mRefreshLayout);
+                    ((MainActivity) mContext).getMore(mRefreshLayout, type);
                 }
             }
         });

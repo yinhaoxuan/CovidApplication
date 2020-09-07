@@ -13,18 +13,18 @@ public class myEventManager implements EventManager {
     }
 
     @Override
-    public void refresh() {
+    public void refresh(String type) {
         allList.clear();
         allList.add(new Event("id", "type", "title", "time", "source", false));
     }
 
     @Override
-    public void getMore() {
+    public void getMore(String type) {
         allList.add(new Event("id", "type", "title", "time", "source", false));
     }
 
     @Override
-    public ArrayList<Event> search(String keyword) {
+    public ArrayList<Event> search(String keyword, String type) {
         return null;
     }
 

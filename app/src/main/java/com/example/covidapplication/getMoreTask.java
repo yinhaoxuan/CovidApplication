@@ -9,10 +9,12 @@ public class getMoreTask extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainActivity> mContext;
     private WeakReference<RefreshLayout> mRefreshLayout;
-    public getMoreTask(MainActivity context, RefreshLayout refreshLayout) {
+    private WeakReference<String> mType;
+    public getMoreTask(MainActivity context, RefreshLayout refreshLayout, String type) {
         super();
         mContext = new WeakReference<>(context);
         mRefreshLayout = new WeakReference<>(refreshLayout);
+        mType = new WeakReference<>(type);
     }
 
     @Override
@@ -23,7 +25,7 @@ public class getMoreTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        mContext.get().eventManager.getMore();
+        mContext.get().eventManager.getMore(mType.get());
         return null;
     }
 }
