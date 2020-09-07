@@ -2,6 +2,7 @@ package com.example.covidapplication;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,6 @@ public class TabFragment extends Fragment {
      * @param param Parameter 1.
      * @return A new instance of fragment TabFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static TabFragment newInstance(String param) {
         TabFragment fragment = new TabFragment();
         Bundle args = new Bundle();
@@ -43,6 +43,7 @@ public class TabFragment extends Fragment {
     }
 
     private RecyclerView mRecyclerView;
+    private SearchView mSearchView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

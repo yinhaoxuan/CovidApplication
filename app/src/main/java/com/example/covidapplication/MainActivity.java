@@ -2,6 +2,8 @@ package com.example.covidapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,16 +57,20 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
 
+//        eventManager = AllData.get_AllData(this);
+//        eventManager.refresh();
+
         eventManager = new myEventManager();
     }
 
-    public void launchContentActivity(View view, Event event) {
+    public void launchContentActivity(View view, final Event event) {
         Log.d("Main", "launch content");
-        Intent intent = new Intent(this, ContentActivity.class);
-        intent.putExtra("title", event.title);
-        intent.putExtra("time", event.time);
-        intent.putExtra("source", event.source);
-        intent.putExtra("content", eventManager.getContent(event.id));
+        new GetContentTask(this, event).execute();
+    }
+
+    public void launchSearchActivity(String query) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("query", query);
         startActivity(intent);
     }
 }
