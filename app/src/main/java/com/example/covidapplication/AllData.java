@@ -155,8 +155,8 @@ public class AllData implements EventManager {
             JSONObject job = new JSONObject(buf);
             JSONObject data=job.getJSONObject("data");
             c=data.getString("content");
-            Event e=db.eventdao().get_from_id(id);
-            Event_content content=new Event_content(id,e.title,c);
+            //Event e=db.eventdao().get_from_id(id);
+            Event_content content=new Event_content(id,c);
             db.event_contentdao().insert(content);
         } catch (MalformedURLException e) {
             e.printStackTrace();
