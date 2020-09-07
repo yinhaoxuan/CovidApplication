@@ -68,9 +68,13 @@ public class AllEntity implements EntityManager {
                     what.add(rr);
                 }
                 String img=sub.getString("img");
-                URL u=new URL(img);
-                InputStream content=(InputStream)u.getContent();
-                Drawable d=Drawable.createFromStream(content,"src");
+                Drawable d=null;
+                if(img!=null)
+                {
+                    URL u=new URL(img);
+                    InputStream content=(InputStream)u.getContent();
+                    d=Drawable.createFromStream(content,"src");
+                }
                 Entity now=new Entity(sub.getDouble("hot"),sub.getString("label"),sub.getString("url"),en,bai,zh,p,what,d);
                 entity.add(now);
             }
