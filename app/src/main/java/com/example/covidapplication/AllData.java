@@ -69,7 +69,7 @@ public class AllData implements EventManager,PlaceManager {
                     newsList.add(e);
                 else if(type.equals("paper"))
                     paperList.add(e);
-                db.eventdao().insert(e);
+                //db.eventdao().insert(e);
             }
             JSONObject array2 = new JSONObject(job.getString("pagination"));
             total = array2.getInt("total");
@@ -83,15 +83,13 @@ public class AllData implements EventManager,PlaceManager {
         allList.clear();
         newsList.clear();
         paperList.clear();
-        news(now_page);
-        now_page++;
+        news(1);
+
     }
     @Override
     public void getMore() {
-        allList.clear();
-        newsList.clear();
-        paperList.clear();
-        news(total/20);
+        news(now_page);
+        now_page++;
     }
 
     @Override
@@ -148,7 +146,7 @@ public class AllData implements EventManager,PlaceManager {
             {
                 String con=(String)it.next().toString();
                 JSONObject result=job.getJSONObject(con);
-                String[] all_con=con.split("|");
+                String[] all_con=con.split("\\|");
                 String time=result.getString("begin");
                 ArrayList<Integer> confirmed=new ArrayList<Integer>(),cured=new ArrayList<Integer>(),dead=new ArrayList<Integer>();
                 JSONArray data=result.getJSONArray("data");
@@ -169,7 +167,7 @@ public class AllData implements EventManager,PlaceManager {
                     countryList.add(p);
                 }
                 //province
-                else {
+                else if(all_con.length==2){
                     name = all_con[1];
                     Place p=new Place(name,time,confirmed,cured,dead);
                     provinceList.add(p);
