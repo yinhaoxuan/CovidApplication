@@ -24,7 +24,6 @@ public class AllPlace implements PlaceManager {
             InputStream input = connect.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
             String line = null;
-            System.out.println(connect.getResponseCode());
             StringBuffer sb = new StringBuffer();
             while ((line = in.readLine()) != null) {
                 sb.append(line);
@@ -57,11 +56,14 @@ public class AllPlace implements PlaceManager {
                     countryList.add(p);
                 }
                 //province
-                else if(all_con.length==2){
+                else if(all_con.length==2 && all_con[0].equals("China")){
                     name = all_con[1];
                     Place p=new Place(name,time,confirmed,cured,dead);
                     provinceList.add(p);
                 }
+                confirmed.clear();
+                cured.clear();
+                dead.clear();
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

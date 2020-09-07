@@ -63,8 +63,17 @@ public class AllData implements EventManager {
             for (int i = 0; i < 20; i++) {
                 JSONObject n = array1.getJSONObject(i);
                 String type=n.getString("type");
-                Event e = new Event(n.getString("_id"), type, n.getString("title"), n.getString("time"), n.getString("source"), false);
+                int read=db.event_contentdao().has_read(n.getString("_id"));
+                Event e=null;
+                if(read==0) {
+                    e = new Event(n.getString("_id"), type, n.getString("title"), n.getString("time"), n.getString("source"), false);
+                }
+                else
+                {
+                    e = new Event(n.getString("_id"), type, n.getString("title"), n.getString("time"), n.getString("source"), true);
+                }
                 allList.add(e);
+                //db.eventdao().insert(e);
                 if(type.equals("news"))
                     newsList.add(e);
                 else if(type.equals("paper"))
@@ -121,10 +130,16 @@ public class AllData implements EventManager {
         }
         return key_news;
     }
-
+    //download the news
     @Override
     public String getContent(String id) {
         String c = null;
+        int read=db.event_contentdao().has_read(id);
+        if(read!=0)
+        {
+            c=db.event_contentdao().get_text(id);
+            return c;
+        }
         try {
             URL url = new URL("https://covid-dashboard.aminer.cn/api/event/"+id);
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
@@ -140,6 +155,9 @@ public class AllData implements EventManager {
             JSONObject job = new JSONObject(buf);
             JSONObject data=job.getJSONObject("data");
             c=data.getString("content");
+            Event e=db.eventdao().get_from_id(id);
+            Event_content content=new Event_content(id,e.title,c);
+            db.event_contentdao().insert(content);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -149,5 +167,4 @@ public class AllData implements EventManager {
         }
         return c;
     }
-
 }
