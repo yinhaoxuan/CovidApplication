@@ -1,5 +1,6 @@
 package com.example.covidapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SearchView;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 
@@ -42,8 +46,9 @@ public class TabFragment extends Fragment {
         return fragment;
     }
 
+    private Context mContext;
     private RecyclerView mRecyclerView;
-    private SearchView mSearchView;
+    private RefreshLayout mRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mContext = getContext();
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
         ArrayList<Event> list;
@@ -72,6 +78,23 @@ public class TabFragment extends Fragment {
         list = MainActivity.eventManager.allList;
         mRecyclerView.setAdapter(new EventListAdapter(this.getActivity(), list));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mRefreshLayout = view.findViewById(R.id.refresh_layout);
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                if (mContext instanceof MainActivity) {
+                    ((MainActivity) mContext).refresh(mRefreshLayout);
+                }
+            }
+        });
+        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                if (mContext instanceof MainActivity) {
+                    ((MainActivity) mContext).getMore(mRefreshLayout);
+                }
+            }
+        });
         return view;
     }
 }

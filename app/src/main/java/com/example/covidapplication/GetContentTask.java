@@ -8,17 +8,18 @@ import java.lang.ref.WeakReference;
 
 public class GetContentTask extends AsyncTask<Void, Void, String> {
 
-    private WeakReference<Context> mContext;
+    private WeakReference<MainActivity> mContext;
     private WeakReference<Event> mEvent;
 
-    public GetContentTask(Context context, Event event) {
+    public GetContentTask(MainActivity context, Event event) {
+        super();
         mContext = new WeakReference<>(context);
         mEvent = new WeakReference<>(event);
     }
 
     @Override
     protected String doInBackground(Void... voids) {
-        return ((MainActivity)mContext.get()).eventManager.getContent(mEvent.get().id);
+        return (mContext.get()).eventManager.getContent(mEvent.get().id);
     }
 
     @Override

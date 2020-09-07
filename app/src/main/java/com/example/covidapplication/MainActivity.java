@@ -20,6 +20,7 @@ import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 public class MainActivity extends AppCompatActivity {
     public static EntityManager entityManager;
@@ -72,5 +73,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("query", query);
         startActivity(intent);
+    }
+
+    public void refresh(RefreshLayout mRefreshLayout) {
+        new RefreshTask(this, mRefreshLayout).execute();
+    }
+
+    public void getMore(RefreshLayout mRefreshLayout) {
+        new getMoreTask(this, mRefreshLayout).execute();
     }
 }
