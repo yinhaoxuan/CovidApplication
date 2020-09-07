@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -38,9 +39,8 @@ public class AllData implements EventManager {
     }
     public void news(int page)
     {
-        URL url= null;
         try {
-                url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=paper&page="+page+"&size=20");
+                URL url = new URL("https://covid-dashboard.aminer.cn/api/events/list?type=paper&page="+page+"&size=20");
                 HttpURLConnection connect = (HttpURLConnection) url.openConnection();
                 InputStream input = connect.getInputStream();
                 BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -55,11 +55,12 @@ public class AllData implements EventManager {
                 JSONArray array1 = job.getJSONArray("data");
                 for (int i = 0; i < 20; i++) {
                     JSONObject n = array1.getJSONObject(i);
-                    Event e = new Event(n.getString("_id"), n.getString("type"), n.getString("title"), n.getString("time"), n.getString("source"), false);
+                    String type=n.getString("type");
+                    Event e = new Event(n.getString("_id"), type, n.getString("title"), n.getString("time"), n.getString("source"), false);
                     allList.add(e);
-                    if(e.type=="news")
+                    if(type.equals("news"))
                         newsList.add(e);
-                    else if(e.type=="paper")
+                    else if(type.equals("paper"))
                         paperList.add(e);
                     db.eventdao().insert(e);
                 }
@@ -88,11 +89,52 @@ public class AllData implements EventManager {
 
     @Override
     public ArrayList<Event> search(String keyword) {
+        try {
+            URL url = new URL("https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery?entity="+keyword);
+            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
+            InputStream input = connect.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(input));
+            String line = null;
+            System.out.println(connect.getResponseCode());
+            StringBuffer sb = new StringBuffer();
+            while ((line = in.readLine()) != null) {
+                sb.append(line);
+            }
+            String buf = sb.toString();
+            JSONObject job = new JSONObject(buf);
+            //read json
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public String getContent(String id) {
+        try {
+            URL url = new URL("https://covid-dashboard.aminer.cn/api/event/"+id);
+            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
+            InputStream input = connect.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(input));
+            String line = null;
+            System.out.println(connect.getResponseCode());
+            StringBuffer sb = new StringBuffer();
+            while ((line = in.readLine()) != null) {
+                sb.append(line);
+            }
+            String buf = sb.toString();
+            JSONObject job = new JSONObject(buf);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

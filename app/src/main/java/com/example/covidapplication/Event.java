@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Event {
-    @PrimaryKey(autoGenerate = true)
-    private int number;
+    @PrimaryKey
     @NonNull
     public final String id;
+
     public String type, title, time, source;
     public boolean hasRead;
 
@@ -23,7 +23,4 @@ public class Event {
         hasRead = false;
     }
 
-    public int getNumber() {
-        return number;
-    }
 }
