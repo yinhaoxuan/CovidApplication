@@ -1,15 +1,19 @@
 package com.example.covidapplication;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 
 public class FragmentEvent extends Fragment {
@@ -18,7 +22,7 @@ public class FragmentEvent extends Fragment {
         // Required empty public constructor
     }
 
-
+    private ArrayList<String> searchHistory = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,26 @@ public class FragmentEvent extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        final SearchView searchView = view.findViewById(R.id.search);
+        final ListView listView = view.findViewById(R.id.search_list);
+//        listView.setAdapter(new ArrayAdapter<String>(getContext(), , searchHistory.toArray()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("search", "onQueryTextSubmit");
+//                listView.set
+                ((MainActivity)getActivity()).launchSearchActivity(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("search", "onQueryTextChange");
+                return false;
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }

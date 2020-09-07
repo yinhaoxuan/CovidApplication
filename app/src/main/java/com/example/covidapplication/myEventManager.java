@@ -14,12 +14,13 @@ public class myEventManager implements EventManager {
 
     @Override
     public void refresh() {
-
+        allList.clear();
+        allList.add(new Event("id", "type", "title", "time", "source", false));
     }
 
     @Override
     public void getMore() {
-
+        allList.add(new Event("id", "type", "title", "time", "source", false));
     }
 
     @Override
