@@ -59,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
 
         eventManager = AllData.get_AllData(this);
-        refresh(null);
+        refresh(null, "all");
+        refresh(null, "news");
+        refresh(null, "paper");
 
 //        eventManager = new myEventManager();
     }
@@ -69,17 +71,18 @@ public class MainActivity extends AppCompatActivity {
         new GetContentTask(this, event).execute();
     }
 
-    public void launchSearchActivity(String query) {
+    public void launchSearchActivity(String query, String type) {
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("query", query);
+        intent.putExtra("type", type);
         startActivity(intent);
     }
 
-    public void refresh(RefreshLayout mRefreshLayout) {
-        new RefreshTask(this, mRefreshLayout).execute();
+    public void refresh(RefreshLayout mRefreshLayout, String type) {
+        new RefreshTask(this, mRefreshLayout, type).execute();
     }
 
-    public void getMore(RefreshLayout mRefreshLayout) {
-        new getMoreTask(this, mRefreshLayout).execute();
+    public void getMore(RefreshLayout mRefreshLayout, String type) {
+        new getMoreTask(this, mRefreshLayout, type).execute();
     }
 }
