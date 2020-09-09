@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
 
-        eventManager = AllData.get_AllData(this);
-        refresh(null, "all");
-        refresh(null, "news");
-        refresh(null, "paper");
+//        eventManager = AllData.get_AllData(this);
+//        refresh(null, "all");
+//        refresh(null, "news");
+//        refresh(null, "paper");
 
-        placeManager = new AllPlace();
-//        placeManager = new MyPlaceManager();
+//        placeManager = new AllPlace();
+        placeManager = new MyPlaceManager();
 
 //        eventManager = new myEventManager();
 

@@ -26,15 +26,17 @@ public class GetDataTask extends AsyncTask<Void, Void, Void> {
         super.onPostExecute(unused);
         BarChart mCountryBar = mView.get().findViewById(R.id.country_bar);
         ArrayList<Place> countryList = MainActivity.placeManager.countryList;
+        Log.d("mylist", Integer.toString(countryList.size()));
+        Log.d("mainlist", Integer.toString(MainActivity.placeManager.countryList.size()));
         ArrayList<BarEntry> countryBarList = new ArrayList<>();
         int i = 0;
         System.out.println(countryList.size());
         for (Place country : countryList)
         {
 
-            if (country.name == "China" || country.name == "India") {
+//            if (country.name == "China" || country.name == "India") {
                 countryBarList.add(new BarEntry(country.confirmed.get(country.confirmed.size() - 1), ++i));
-            }
+//            }
         }
         BarDataSet countryBarSet = new BarDataSet(countryBarList, "Country");
         BarData countryData = new BarData(countryBarSet);
@@ -56,9 +58,11 @@ public class GetDataTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         if (!hasData) {
+            Log.d("here", "here");
             MainActivity.placeManager.getData();
             hasData = true;
         }
+        Log.d("afterbackground", Integer.toString(MainActivity.placeManager.countryList.size()));
         return null;
     }
 }
