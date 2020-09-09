@@ -8,19 +8,19 @@ import java.lang.ref.WeakReference;
 public class getMoreTask extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainActivity> mContext;
-    private WeakReference<RefreshLayout> mRefreshLayout;
+    private WeakReference<TabFragment> mTabFragment;
     private WeakReference<String> mType;
-    public getMoreTask(MainActivity context, RefreshLayout refreshLayout, String type) {
+    public getMoreTask(MainActivity context, TabFragment tabFragment, String type) {
         super();
         mContext = new WeakReference<>(context);
-        mRefreshLayout = new WeakReference<>(refreshLayout);
+        mTabFragment = new WeakReference<>(tabFragment);
         mType = new WeakReference<>(type);
     }
 
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        mRefreshLayout.get().finishLoadmore();
+        mTabFragment.get().finishLoadmore();
     }
 
     @Override

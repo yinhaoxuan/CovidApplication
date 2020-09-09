@@ -8,20 +8,20 @@ import java.lang.ref.WeakReference;
 public class RefreshTask extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<MainActivity> mContext;
-    private WeakReference<RefreshLayout> mRefreshLayout;
+    private WeakReference<TabFragment> mTabFragment;
     private WeakReference<String> mType;
-    public RefreshTask(MainActivity context, RefreshLayout refreshLayout, String type) {
+    public RefreshTask(MainActivity context, TabFragment tabFragment, String type) {
         super();
         mContext = new WeakReference<>(context);
-        mRefreshLayout = new WeakReference<>(refreshLayout);
+        mTabFragment = new WeakReference<>(tabFragment);
         mType = new WeakReference<>(type);
     }
 
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        if (mRefreshLayout.get() != null) {
-            mRefreshLayout.get().finishRefresh();
+        if (mTabFragment.get() != null) {
+            mTabFragment.get().finishRefresh();
         }
     }
 

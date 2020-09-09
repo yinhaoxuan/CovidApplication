@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         refresh(null, "paper");
 
         placeManager = new AllPlace();
+//        placeManager = new MyPlaceManager();
 
 //        eventManager = new myEventManager();
+
     }
 
     public void launchContentActivity(View view, final Event event) {
@@ -80,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void refresh(RefreshLayout mRefreshLayout, String type) {
-        new RefreshTask(this, mRefreshLayout, type).execute();
+    public void refresh(TabFragment tabFragment, String type) {
+        new RefreshTask(this, tabFragment, type).execute();
     }
 
-    public void getMore(RefreshLayout mRefreshLayout, String type) {
-        new getMoreTask(this, mRefreshLayout, type).execute();
+    public void getMore(TabFragment tabFragment, String type) {
+        new getMoreTask(this, tabFragment, type).execute();
     }
 }

@@ -3,8 +3,11 @@ package com.example.covidapplication;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
 
@@ -50,9 +53,10 @@ public class TabFragment extends Fragment {
 
     private Context mContext;
     private RecyclerView mRecyclerView;
-    private RefreshLayout mRefreshLayout;
+    private SmartRefreshLayout mRefreshLayout;
     private SearchView mSearchView;
     private RecyclerView mSearchRecycler;
+    private boolean mIsRefreshing = false;
     private ArrayList<String> searchHistory = new ArrayList<>();
 
     @Override
@@ -82,12 +86,17 @@ public class TabFragment extends Fragment {
         }
         mRecyclerView.setAdapter(new EventListAdapter(this.getActivity(), list));
         /*TODO: solve crash*/
-        mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getActivity()));
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getContext()));
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return mIsRefreshing;
+            }
+        });
         mSearchView = view.findViewById(R.id.search);
         mSearchRecycler = view.findViewById(R.id.search_recycler);
         mSearchRecycler.setAdapter(new StringListAdapter(this.getActivity(), searchHistory, type));
-        mSearchRecycler.setLayoutManager(new WrapContentLinearLayoutManager(this.getActivity()));
+        mSearchRecycler.setLayoutManager(new WrapContentLinearLayoutManager(this.getContext()));
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -109,22 +118,34 @@ public class TabFragment extends Fragment {
         });
 
         mRefreshLayout = view.findViewById(R.id.refresh_layout);
-        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                if (mContext instanceof MainActivity) {
-                    ((MainActivity) mContext).refresh(mRefreshLayout, type);
-                }
-            }
-        });
-        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+        final TabFragment tabFragment = this;
+        mRefreshLayout.setOnRefreshListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                if (mContext instanceof MainActivity) {
-                    ((MainActivity) mContext).getMore(mRefreshLayout, type);
+                mIsRefreshing = true;
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).getMore(tabFragment, type);
+                }
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mIsRefreshing = true;
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).refresh(tabFragment, type);
                 }
             }
         });
         return view;
+    }
+
+    public void finishRefresh() {
+        mRefreshLayout.finishRefresh();
+        mIsRefreshing = false;
+    }
+
+    public void finishLoadmore() {
+        mRefreshLayout.finishLoadmore();
+        mIsRefreshing = false;
     }
 }

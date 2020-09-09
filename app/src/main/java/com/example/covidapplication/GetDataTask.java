@@ -1,12 +1,12 @@
 package com.example.covidapplication;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.*;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.lang.ref.WeakReference;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class GetDataTask extends AsyncTask<Void, Void, Void> {
 
+    static boolean hasData = false;
     private WeakReference<View> mView;
     public GetDataTask(View view) {
         super();
@@ -23,30 +24,41 @@ public class GetDataTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        PieChart mCountryPie = mView.get().findViewById(R.id.country_pie);
+        BarChart mCountryBar = mView.get().findViewById(R.id.country_bar);
         ArrayList<Place> countryList = MainActivity.placeManager.countryList;
-        ArrayList<PieEntry> countryPieList = new ArrayList<>();
-        for (Place country : countryList) {
-            countryPieList.add(new PieEntry(country.confirmed.get(country.confirmed.size() - 1), country.name));
-        }
-        PieData countryData = new PieData(new PieDataSet(countryPieList, "Country"));
-        mCountryPie.setData(countryData);
-        mCountryPie.invalidate();
+        ArrayList<BarEntry> countryBarList = new ArrayList<>();
+        int i = 0;
+        System.out.println(countryList.size());
+        for (Place country : countryList)
+        {
 
-        PieChart mProvincePie = mView.get().findViewById(R.id.province_pie);
-        ArrayList<Place> provinceList = MainActivity.placeManager.provinceList;
-        ArrayList<PieEntry> provincePieList = new ArrayList<>();
-        for (Place province : provinceList) {
-            provincePieList.add(new PieEntry(province.confirmed.get(province.confirmed.size() - 1), province.name));
+            if (country.name == "China" || country.name == "India") {
+                countryBarList.add(new BarEntry(country.confirmed.get(country.confirmed.size() - 1), ++i));
+            }
         }
-        PieData provinceData = new PieData(new PieDataSet(provincePieList, "Province"));
-        mProvincePie.setData(provinceData);
-        mProvincePie.invalidate();
+        BarDataSet countryBarSet = new BarDataSet(countryBarList, "Country");
+        BarData countryData = new BarData(countryBarSet);
+        mCountryBar.setData(countryData);
+        mCountryBar.invalidate();
+
+//        BarChart mProvinceBar = mView.get().findViewById(R.id.province_bar);
+//        ArrayList<Place> provinceList = MainActivity.placeManager.provinceList;
+//        ArrayList<BarEntry> provinceBarList = new ArrayList<>();
+//        int j = 0;
+//        for (Place province : provinceList) {
+//            provinceBarList.add(new BarEntry(province.confirmed.get(province.confirmed.size() - 1), ++j));
+//        }
+//        BarData provinceData = new BarData(new BarDataSet(provinceBarList, "Province"));
+//        mProvinceBar.setData(provinceData);
+//        mProvinceBar.invalidate();
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        MainActivity.placeManager.getData();
+        if (!hasData) {
+            MainActivity.placeManager.getData();
+            hasData = true;
+        }
         return null;
     }
 }

@@ -75,4 +75,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     public int getItemCount() {
         return mEventList.size();
     }
+
+
 }
