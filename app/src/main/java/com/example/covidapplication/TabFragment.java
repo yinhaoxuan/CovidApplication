@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +57,9 @@ public class TabFragment extends Fragment {
     private SmartRefreshLayout mRefreshLayout;
     private SearchView mSearchView;
     private RecyclerView mSearchRecycler;
+    private EventListAdapter mAdapter;
     private boolean mIsRefreshing = false;
+    private ArrayList<Event> mEventList = new ArrayList<>();
     private ArrayList<String> searchHistory = new ArrayList<>();
 
     @Override
@@ -72,19 +75,10 @@ public class TabFragment extends Fragment {
         mContext = getContext();
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
-        ArrayList<Event> list = null;
-        switch (type) {
-            case "all":
-                list = MainActivity.eventManager.allList;
-                break;
-            case "paper":
-                list = MainActivity.eventManager.paperList;
-                break;
-            case "news":
-                list = MainActivity.eventManager.newsList;
-                break;
-        }
-        mRecyclerView.setAdapter(new EventListAdapter(this.getActivity(), list));
+        mEventList = new ArrayList<>();
+        updateList();
+        mAdapter = new EventListAdapter(this.getActivity(), mEventList);
+        mRecyclerView.setAdapter(mAdapter);
         /*TODO: solve crash*/
         mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getContext()));
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
@@ -140,12 +134,31 @@ public class TabFragment extends Fragment {
     }
 
     public void finishRefresh() {
+        updateList();
         mRefreshLayout.finishRefresh();
         mIsRefreshing = false;
     }
 
     public void finishLoadmore() {
+        updateList();
         mRefreshLayout.finishLoadmore();
         mIsRefreshing = false;
+    }
+
+    public void updateList() {
+        switch (type) {
+            case "all":
+                mEventList.clear();
+                mEventList.addAll(MainActivity.eventManager.allList);
+                break;
+            case "paper":
+                mEventList.clear();
+                mEventList.addAll(MainActivity.eventManager.paperList);
+                break;
+            case "news":
+                mEventList.clear();
+                mEventList.addAll(MainActivity.eventManager.newsList);
+                break;
+        }
     }
 }

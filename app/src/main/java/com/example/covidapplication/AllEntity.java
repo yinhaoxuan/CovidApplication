@@ -1,6 +1,7 @@
 package com.example.covidapplication;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import org.json.JSONArray;
@@ -25,6 +26,7 @@ public class AllEntity implements EntityManager {
         ArrayList<Entity> entity=new ArrayList<Entity>();
         try {
             url = new URL("https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery?entity="+key);
+            Log.d("search entity", key);
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             InputStream input = connect.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -85,6 +87,7 @@ public class AllEntity implements EntityManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d("entity count", Integer.toString(entity.size()));
         return entity;
     }
 }

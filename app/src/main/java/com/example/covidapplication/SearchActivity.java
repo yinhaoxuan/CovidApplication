@@ -30,4 +30,5 @@ public class SearchActivity extends AppCompatActivity {
         Log.d("Main", "launch content");
         new GetContentTask(this, event).execute();
     }
+
 }

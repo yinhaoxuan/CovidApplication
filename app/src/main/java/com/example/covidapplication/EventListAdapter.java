@@ -48,7 +48,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             }
         }
     }
-    private final ArrayList<Event> mEventList;
+    public ArrayList<Event> mEventList;
     private final LayoutInflater mInflater;
     private final Context mContext;
 

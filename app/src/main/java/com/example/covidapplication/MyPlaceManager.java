@@ -12,6 +12,6 @@ public class MyPlaceManager implements PlaceManager {
         b.add(2);
         c.add(3);
         countryList.add(new Place("China", "begin", a, b, c));
-        provinceList.add(new Place("Shanxi", "begin", c,b,a));
+//        provinceList.add(new Place("Shanxi", "begin", c ,b, a));
     }
 }
