@@ -39,7 +39,6 @@ public class AllEntity implements EntityManager {
             String buf = sb.toString();
             JSONObject job = new JSONObject(buf);
             JSONArray data=job.getJSONArray("data");
-
             int size=data.length();
             for(int i=0;i<size;i++)
             {
@@ -63,6 +62,7 @@ public class AllEntity implements EntityManager {
                 JSONArray re=covid.getJSONArray("relations");
                 ArrayList<Relation> what=new ArrayList<Relation>();
                 int resize=re.length();
+                if(resize>=20) resize=20;
                 for(int j=0;j<resize;j++)
                 {
                     JSONObject relate=re.getJSONObject(j);
@@ -71,7 +71,9 @@ public class AllEntity implements EntityManager {
                 }
                 String img=sub.getString("img");
                 Drawable d=null;
-                if(img!=null)
+                if(img=="null")
+                {}
+                else
                 {
                     URL u=new URL(img);
                     InputStream content=(InputStream)u.getContent();
