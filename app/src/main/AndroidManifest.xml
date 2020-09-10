@@ -17,18 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
+        <activity android:name=".itemtouchhelperdemo.demochannel.EditTabActivity"/>
 
         <activity android:name=".SearchActivity" />
         <activity android:name=".ContentActivity" />
-        <activity android:name=".EntityActivity"/>
+        <activity android:name=".EntityActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

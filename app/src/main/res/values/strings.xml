@@ -4,18 +4,18 @@
     <string name="all_news_welcome">These are all news</string>
     <string name="news_welcome">These are news:</string>
     <string name="papers_welcome">These are papers:</string>
-    <string name="tab_label_all">All Events</string>
+    <string name="tab_label_all">All</string>
     <string name="tab_label_news">News</string>
     <string name="tab_label_paper">Paper</string>
     <string name="title_events">Events</string>
     <string name="title_data">Data</string>
     <string name="title_ralations">Relations</string>
     <string name="title_activity_search_entity">SearchEntityActivity</string>
-    <string name="tip_drag">长按编辑,拖拽排序</string>
-    <string name="my_cahnnel">我的频道</string>
-    <string name="other_channel">其他频道</string>
-    <string name="edit">编辑</string>
-    <string name="finish">完成</string>
+    <string name="tip_drag">Click to add/remove. Drag to sort.</string>
+    <string name="my_cahnnel">My categories</string>
+    <string name="other_channel">Other categories</string>
+    <string name="edit">Edit</string>
+    <string name="finish">Finish</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

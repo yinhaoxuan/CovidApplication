@@ -4,27 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
-    int numOfTabs;
-    public PagerAdapter(FragmentManager fm, int numOfTabs) {
+    ArrayList<String> mCurrentTab;
+    public PagerAdapter(FragmentManager fm, ArrayList<String> currentTab) {
         super(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
-        this.numOfTabs = numOfTabs;
+        mCurrentTab = currentTab;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0: return TabFragment.newInstance("all");
-            case 1: return TabFragment.newInstance("news");
-            case 2: return TabFragment.newInstance("paper");
-            default: return null;
-        }
+        return TabFragment.newInstance(mCurrentTab.get(position));
     }
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return mCurrentTab.size();
     }
 }
