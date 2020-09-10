@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class SearchEntityTask extends AsyncTask<Void, Void, Void> {
 
-    private WeakReference<View> mView;
+    private WeakReference<RecyclerView> mRecyclerView;
     private WeakReference<String> mQuery;
     private ArrayList<Entity> mList;
 
-    public SearchEntityTask(View view, String query) {
+    public SearchEntityTask(RecyclerView recyclerView, String query) {
         super();
-        mView = new WeakReference<>(view);
+        mRecyclerView = new WeakReference<>(recyclerView);
         mQuery = new WeakReference<>(query);
     }
 
@@ -27,8 +27,8 @@ public class SearchEntityTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void unused) {
-        RecyclerView recyclerView = mView.get().findViewById(R.id.entity_recycler);
-        recyclerView.setAdapter(new EntityListAdapter(mView.get().getContext(), mList));
-        recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(mView.get().getContext()));
+        mRecyclerView.get().setAdapter(new EntityListAdapter(mRecyclerView.get().getContext(), mList));
+        mRecyclerView.get().setLayoutManager(new WrapContentLinearLayoutManager(mRecyclerView.get().getContext()));
+        mRecyclerView.get().setVisibility(View.VISIBLE);
     }
 }

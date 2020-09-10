@@ -38,9 +38,10 @@ public class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.St
             Log.d("onClick", "onClick");
             int mPosition = getLayoutPosition();
             String string = mStringList.get(mPosition);
-            if (mContext instanceof MainActivity) {
-                ((MainActivity) mContext).launchSearchActivity(string, mType);
-            }
+            Intent intent = new Intent(mContext, SearchActivity.class);
+            intent.putExtra("query", string);
+            intent.putExtra("type", mType);
+            mContext.startActivity(intent);
         }
     }
     private final ArrayList<String> mStringList;

@@ -1,7 +1,6 @@
 package com.example.covidapplication;
 
 import android.os.Bundle;
-import android.util.Log;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragmentRelation extends Fragment {
+import java.util.ArrayList;
 
-    public FragmentRelation() {
+public class FragmentEntity extends Fragment {
+
+    public FragmentEntity() {
         // Required empty public constructor
     }
 
@@ -22,19 +23,19 @@ public class FragmentRelation extends Fragment {
 
     private SearchView mSearchView;
     private RecyclerView mRecyclerView;
-    private FragmentRelation mThis;
+    private ArrayList<Entity> mEntityList;
+    private FragmentEntity mThis;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_relation, container, false);
+        final View view = inflater.inflate(R.layout.fragment_entity, container, false);
+        mThis = this;
         mSearchView = view.findViewById(R.id.entity_search);
         mRecyclerView = view.findViewById(R.id.entity_recycler);
-        mThis = this;
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("search", "onQueryTextSubmit");
-                new SearchEntityTask(view, query).execute();
+                new SearchEntityTask(mRecyclerView, query).execute();
                 return false;
             }
 

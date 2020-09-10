@@ -1,15 +1,16 @@
 package com.example.covidapplication;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.lang.ref.WeakReference;
 
-public class RefreshTask extends AsyncTask<Void, Void, Void> {
+public class GetMoreTask extends AsyncTask<Void, Void, Void> {
 
     private WeakReference<TabFragment> mFragment;
     private WeakReference<String> mType;
-    public RefreshTask(TabFragment fragment, String type) {
+    public GetMoreTask(TabFragment fragment, String type) {
         super();
         mFragment = new WeakReference<>(fragment);
         mType = new WeakReference<>(type);
@@ -18,12 +19,14 @@ public class RefreshTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        mFragment.get().finishRefresh();
+        mFragment.get().finishLoadmore();
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        MainActivity.eventManager.refresh(mType.get());
+        Log.d("before getmore", Integer.toString(MainActivity.eventManager.allList.size()));
+        MainActivity.eventManager.getMore(mType.get());
+        Log.d("after getmore", Integer.toString(MainActivity.eventManager.allList.size()));
         return null;
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentRelation">
+    tools:context=".FragmentEntity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/entity_search"
@@ -14,7 +14,6 @@
         android:id="@+id/entity_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/entity_search"
-        android:visibility="invisible"/>
+        android:layout_below="@id/entity_search"/>
 
 </RelativeLayout>

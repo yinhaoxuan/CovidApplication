@@ -2,10 +2,11 @@ package com.example.covidapplication;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Entity {
+public class Entity implements Serializable {
     public final double hot;
     public final String label, url, enwiki, baidu, zhwiki;
     public final HashMap<String, String> properties;

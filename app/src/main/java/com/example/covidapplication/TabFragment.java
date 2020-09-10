@@ -1,26 +1,20 @@
 package com.example.covidapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +55,7 @@ public class TabFragment extends Fragment {
     private boolean mIsRefreshing = false;
     private ArrayList<Event> mEventList = new ArrayList<>();
     private ArrayList<String> searchHistory = new ArrayList<>();
+    private TabFragment tabFragment = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,17 +71,10 @@ public class TabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
         mEventList = new ArrayList<>();
-        updateList();
-        mAdapter = new EventListAdapter(this.getActivity(), mEventList);
+        mAdapter = new EventListAdapter(this.getActivity(), tabFragment, mEventList);
         mRecyclerView.setAdapter(mAdapter);
-        /*TODO: solve crash*/
         mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getContext()));
-        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return mIsRefreshing;
-            }
-        });
+        new RefreshTask(tabFragment, type).execute();
         mSearchView = view.findViewById(R.id.search);
         mSearchRecycler = view.findViewById(R.id.search_recycler);
         mSearchRecycler.setAdapter(new StringListAdapter(this.getActivity(), searchHistory, type));
@@ -96,38 +84,44 @@ public class TabFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 Log.d("search", "onQueryTextSubmit");
                 searchHistory.add(query);
-                ((MainActivity)getActivity()).launchSearchActivity(query, type);
-                mSearchRecycler.setVisibility(View.INVISIBLE);
-                mRecyclerView.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra("query", query);
+                intent.putExtra("type", type);
+                startActivity(intent);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        mSearchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 mSearchRecycler.setVisibility(View.VISIBLE);
                 mRecyclerView.setVisibility(View.INVISIBLE);
-                Log.d("search", "onQueryTextChange");
+            }
+        });
+        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                mSearchRecycler.setVisibility(View.INVISIBLE);
+                mRecyclerView.setVisibility(View.VISIBLE);
                 return false;
             }
         });
 
         mRefreshLayout = view.findViewById(R.id.refresh_layout);
-        final TabFragment tabFragment = this;
-        mRefreshLayout.setOnRefreshListener(new OnRefreshLoadmoreListener() {
+        mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                mIsRefreshing = true;
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).getMore(tabFragment, type);
-                }
+                new GetMoreTask(tabFragment, type).execute();
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                mIsRefreshing = true;
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).refresh(tabFragment, type);
-                }
+                new RefreshTask(tabFragment, type).execute();
             }
         });
         return view;
@@ -136,13 +130,11 @@ public class TabFragment extends Fragment {
     public void finishRefresh() {
         updateList();
         mRefreshLayout.finishRefresh();
-        mIsRefreshing = false;
     }
 
     public void finishLoadmore() {
         updateList();
         mRefreshLayout.finishLoadmore();
-        mIsRefreshing = false;
     }
 
     public void updateList() {
@@ -160,5 +152,6 @@ public class TabFragment extends Fragment {
                 mEventList.addAll(MainActivity.eventManager.newsList);
                 break;
         }
+        mAdapter.notifyDataSetChanged();
     }
 }

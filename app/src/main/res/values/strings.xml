@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Covid Application</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_news_welcome">These are all news</string>
     <string name="news_welcome">These are news:</string>
@@ -12,9 +11,17 @@
     <string name="title_data">Data</string>
     <string name="title_ralations">Relations</string>
     <string name="title_activity_search_entity">SearchEntityActivity</string>
+    <string name="tip_drag">长按编辑,拖拽排序</string>
+    <string name="my_cahnnel">我的频道</string>
+    <string name="other_channel">其他频道</string>
+    <string name="edit">编辑</string>
+    <string name="finish">完成</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="image">图片</string>
+    <string name="property">属性：</string>
+    <string name="relation">相关实体：</string>
 </resources>

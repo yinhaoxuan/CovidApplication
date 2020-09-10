@@ -17,10 +17,11 @@ import java.util.ArrayList;
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
 
 
-    public EventListAdapter(Context context, ArrayList<Event> EventList) {
+    public EventListAdapter(Context context, TabFragment fragment, ArrayList<Event> EventList) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
-        this.mEventList = EventList;
+        mFragment = fragment;
+        mEventList = EventList;
     }
 
     class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -40,16 +41,12 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             Log.d("onClick", "onClick");
             int mPosition = getLayoutPosition();
             Event event = mEventList.get(mPosition);
-            if (mContext instanceof MainActivity) {
-                ((MainActivity) mContext).launchContentActivity(view, event);
-            }
-            else if (mContext instanceof SearchActivity) {
-                ((SearchActivity) mContext).launchContentActivity(view, event);
-            }
+            new GetContentTask(mContext, mFragment, event).execute();
         }
     }
     public ArrayList<Event> mEventList;
     private final LayoutInflater mInflater;
+    private TabFragment mFragment;
     private final Context mContext;
 
     @NonNull

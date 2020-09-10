@@ -10,10 +10,12 @@ public class GetContentTask extends AsyncTask<Void, Void, String> {
 
     private WeakReference<Context> mContext;
     private WeakReference<Event> mEvent;
+    private WeakReference<TabFragment> mFragment;
 
-    public GetContentTask(Context context, Event event) {
+    public GetContentTask(Context context, TabFragment fragment, Event event) {
         super();
         mContext = new WeakReference<>(context);
+        mFragment = new WeakReference<>(fragment);
         mEvent = new WeakReference<>(event);
     }
 
@@ -30,6 +32,9 @@ public class GetContentTask extends AsyncTask<Void, Void, String> {
         intent.putExtra("time", mEvent.get().time);
         intent.putExtra("source", mEvent.get().source);
         intent.putExtra("content", s);
+        if (mFragment.get() != null) {
+            mFragment.get().updateList();
+        }
         mContext.get().startActivity(intent);
     }
 }

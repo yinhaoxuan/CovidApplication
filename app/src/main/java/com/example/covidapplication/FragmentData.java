@@ -40,7 +40,6 @@ public class FragmentData extends Fragment {
         Log.d("mainlist", Integer.toString(MainActivity.placeManager.countryList.size()));
         ArrayList<BarEntry> countryBarList = new ArrayList<>();
         int i = 0;
-        System.out.println(countryList.size());
         for (Place country : countryList)
         {
 

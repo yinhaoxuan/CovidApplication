@@ -6,20 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ContentActivity"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_title"/>
+        android:id="@+id/content_title"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_source"/>
+        android:id="@+id/content_source"
+        android:textSize="15sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_time"/>
+        android:id="@+id/content_time"
+        android:textSize="15sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content"/>
+        android:id="@+id/content"
+        android:textSize="20sp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

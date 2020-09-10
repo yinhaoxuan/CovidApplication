@@ -22,13 +22,8 @@ public class SearchActivity extends AppCompatActivity {
         ArrayList<Event> eventList = MainActivity.eventManager.search(query, type);
         ((TextView)findViewById(R.id.search_text)).setText("Results for:" + query);
         RecyclerView recyclerView = findViewById(R.id.search_recycler);
-        recyclerView.setAdapter(new EventListAdapter(this, eventList));
+        recyclerView.setAdapter(new EventListAdapter(this, null, eventList));
         recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this));
-    }
-
-    public void launchContentActivity(View view, final Event event) {
-        Log.d("Main", "launch content");
-        new GetContentTask(this, event).execute();
     }
 
 }

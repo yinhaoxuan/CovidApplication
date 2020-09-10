@@ -1,6 +1,8 @@
 package com.example.covidapplication;
 
-public class Relation {
+import java.io.Serializable;
+
+public class Relation implements Serializable {
     public final String relation, url, label;
     public final boolean forward;
 

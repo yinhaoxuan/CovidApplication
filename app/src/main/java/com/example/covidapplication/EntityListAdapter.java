@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class EntityListAdapter extends RecyclerView.Adapter<EntityListAdapter.EntityViewHolder> {
 
 
-    public EntityListAdapter(Context context, ArrayList<Entity> EntityList) {
+    public EntityListAdapter(Context context, ArrayList<Entity> entityList) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
-        this.mEntityList = EntityList;
+        mEntityList = entityList;
     }
 
     class EntityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -40,7 +40,7 @@ public class EntityListAdapter extends RecyclerView.Adapter<EntityListAdapter.En
             int mPosition = getLayoutPosition();
             Entity entity = mEntityList.get(mPosition);
             Intent intent = new Intent(mContext, EntityActivity.class);
-            intent.putExtra("entity", (Parcelable) entity);
+            intent.putExtra("entity", entity);
             mContext.startActivity(intent);
         }
     }
@@ -57,6 +57,7 @@ public class EntityListAdapter extends RecyclerView.Adapter<EntityListAdapter.En
     @Override
     public void onBindViewHolder(@NonNull EntityListAdapter.EntityViewHolder holder, int position) {
         Entity mCurrent = mEntityList.get(position);
+        Log.d("in entity list", mCurrent.label);
         holder.mNameView.setText(mCurrent.label);
     }
 
