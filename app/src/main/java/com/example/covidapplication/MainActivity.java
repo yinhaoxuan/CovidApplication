@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static EntityManager entityManager = new AllEntity();
     public static EventManager eventManager;
     public static PlaceManager placeManager = new MyPlaceManager();
+    public static ScholarManager scholarManager = new MyScholarManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventFragment()).commit();
 
-//        eventManager = new myEventManager();
+//        eventManager = new MyEventManager();
 
     }
 

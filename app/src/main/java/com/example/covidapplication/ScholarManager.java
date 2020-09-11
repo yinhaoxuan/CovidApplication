@@ -5,5 +5,5 @@ import java.util.ArrayList;
 public interface ScholarManager {
     // Sort by citations
     // is_passedaway = true
-    ArrayList<Scholar> citationList = new ArrayList<>(), passedAwayList = new ArrayList<>();
+    public ArrayList<Scholar> citationList = new ArrayList<>(), passedAwayList = new ArrayList<>();
 }

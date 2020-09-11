@@ -18,7 +18,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return TabFragment.newInstance(mCurrentTab.get(position));
+        String name = mCurrentTab.get(position);
+        if (name.equals("citation") || name.equals("passedaway")) {
+            return ScholarTabFragment.newInstance(name);
+        }
+        else {
+            return TabFragment.newInstance(name);
+        }
     }
 
     @Override

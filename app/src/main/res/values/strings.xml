@@ -26,4 +26,9 @@
     <string name="relation">相关实体：</string>
     <string name="cluster">Cluster</string>
     <string name="scholar">Scholar</string>
+    <string name="tab_label_citation">citation</string>
+    <string name="tab_label_passedaway">passedaway</string>
+    <string name="biology">Biology</string>
+    <string name="education">Education</string>
+    <string name="work">Work</string>
 </resources>

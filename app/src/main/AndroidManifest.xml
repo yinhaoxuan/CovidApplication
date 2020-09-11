@@ -17,8 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".itemtouchhelperdemo.demochannel.EditTabActivity"/>
-
+        <activity android:name=".ScholarActivity" />
+        <activity android:name=".itemtouchhelperdemo.demochannel.EditTabActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".ContentActivity" />
         <activity android:name=".EntityActivity" />

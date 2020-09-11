@@ -2,8 +2,8 @@ package com.example.covidapplication;
 
 import java.util.ArrayList;
 
-public class myEventManager implements EventManager {
-    myEventManager() {
+public class MyEventManager implements EventManager {
+    MyEventManager() {
         Event event1 = new Event("a", "b", "c", "d", "e", false);
         Event event2 = new Event("f", "g", "h", "i", "j", true);
         Event event3 = new Event("k", "l", "m", "n", "o", false);
