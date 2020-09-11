@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class AvatarTask extends AsyncTask<Void, Void, Void> {
             URL url = new URL(mUrl.get());
             InputStream content = (InputStream)url.getContent();
             mDrawable = Drawable.createFromStream(content, "src");
+            Log.d("after fetching", mDrawable.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
