@@ -37,13 +37,19 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_events:
-                        fragment = new FragmentEvent();
+                        fragment = new EventFragment();
                         break;
                     case R.id.nav_data:
-                        fragment = new FragmentData();
+                        fragment = new DataFragment();
                         break;
                     case R.id.nav_relation:
-                        fragment = new FragmentEntity();
+                        fragment = new EntityFragment();
+                        break;
+                    case R.id.nav_cluster:
+                        fragment = new ClusterFragment();
+                        break;
+                    case R.id.nav_scholar:
+                        fragment = new ScholarFragment();
                         break;
                     default:
                         return false;
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEvent()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventFragment()).commit();
 
 //        eventManager = new myEventManager();
 

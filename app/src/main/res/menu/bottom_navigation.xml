@@ -15,4 +15,13 @@
         android:id="@+id/nav_relation"
         android:icon="@drawable/ic_baseline_arrow_forward_24"
         android:title="@string/title_ralations"/>
+
+    <item
+        android:id="@+id/nav_cluster"
+        android:icon="@drawable/ic_baseline_category_24"
+        android:title="@string/cluster"/>
+    <item
+        android:id="@+id/nav_scholar"
+        android:icon="@drawable/ic_baseline_school_24"
+        android:title="@string/scholar"/>
 </menu>

@@ -24,4 +24,6 @@
     <string name="image">图片</string>
     <string name="property">属性：</string>
     <string name="relation">相关实体：</string>
+    <string name="cluster">Cluster</string>
+    <string name="scholar">Scholar</string>
 </resources>

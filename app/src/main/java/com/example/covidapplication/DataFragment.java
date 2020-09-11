@@ -16,11 +16,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 
 
-public class FragmentData extends Fragment {
+public class DataFragment extends Fragment {
 
     private PieChart countryPieChart, provincePieChart;
 
-    public FragmentData() {
+    public DataFragment() {
         // Required empty public constructor
     }
 

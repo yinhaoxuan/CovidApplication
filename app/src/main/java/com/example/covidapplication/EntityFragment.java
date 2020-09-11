@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class FragmentEntity extends Fragment {
+public class EntityFragment extends Fragment {
 
-    public FragmentEntity() {
+    public EntityFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class FragmentEntity extends Fragment {
     private SearchView mSearchView;
     private RecyclerView mRecyclerView;
     private ArrayList<Entity> mEntityList;
-    private FragmentEntity mThis;
+    private EntityFragment mThis;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

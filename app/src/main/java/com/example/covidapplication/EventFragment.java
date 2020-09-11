@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 
-public class FragmentEvent extends Fragment {
+public class EventFragment extends Fragment {
 
     private Context mContext;
     private ViewPager mViewPager;
@@ -39,7 +39,7 @@ public class FragmentEvent extends Fragment {
 
         }
     };
-    public FragmentEvent() {
+    public EventFragment() {
         // Required empty public constructor
     }
 
