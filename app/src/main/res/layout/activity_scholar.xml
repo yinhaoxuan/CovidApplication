@@ -136,14 +136,17 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/avatar"
-                android:contentDescription="@string/image"
-                android:gravity="center"/>
+
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image"
+            android:minHeight="500dp"
+            android:minWidth="5000dp"
+            android:gravity="center" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
