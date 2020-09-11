@@ -15,62 +15,105 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/entity_name"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/entity_hot" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/entity_hot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/entity_url" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/entity_name" />
 
                 <TextView
+                    android:id="@+id/entity_url"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/entity_wiki" />
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/entity_wiki"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/entity_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/image"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@id/entity_wiki" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/entity_picture"
-                android:contentDescription="@string/image" />
+
         </LinearLayout>
 
         <TextView
+            android:id="@+id/name_property"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/property"/>
+            android:layout_marginTop="7dp"
+            android:text="@string/property"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/entity_wiki" />
+
+
+
         <TextView
+            android:id="@+id/entity_properties"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/entity_properties"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:lineSpacingExtra="3dp"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/entity_picture"
+            android:layout_marginTop="5dp"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
             android:text="@string/relation"
-            app:layout_constraintBottom_toBottomOf="@id/entity_properties"
-            android:layout_marginTop="7dp"/>
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/entity_properties" />
 
         <TextView
+            android:id="@+id/entity_relations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/entity_relations"
-            app:layout_constraintBottom_toBottomOf="@id/entity_properties"
-            android:layout_marginTop="7dp"/>
+            android:layout_marginTop="7dp"
+            android:textSize="22sp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:lineSpacingExtra="3dp"
+            app:layout_constraintBottom_toBottomOf="@id/entity_relations"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
 </ScrollView>

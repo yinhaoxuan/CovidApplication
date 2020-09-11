@@ -52,12 +52,11 @@
             <Button
                 android:id="@+id/share"
                 style=""
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="10dp"
-                tools:src="@drawable/heart"
-                android:text="@string/share" />
+                android:background="@drawable/ic_baseline_share_24" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
