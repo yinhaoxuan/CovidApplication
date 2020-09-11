@@ -2,6 +2,7 @@ package com.example.covidapplication;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +19,12 @@ import java.util.ArrayList;
 
 public class AllScholar implements ScholarManager {
     //static ArrayList<Scholar> citationList = new ArrayList<>(), passedAwayList = new ArrayList<>();
-    private Appdata db;
+    private ScholarData db;
     private  static AllScholar INSTANCE=null;
 
     private AllScholar(Context context)
     {
-        this.db=Appdata.getApp(context,"News-db");
+        this.db=ScholarData.getApp(context,"scholar-db");
     }
     public static AllScholar get_AllScholar(Context context){
         if(INSTANCE==null)
@@ -81,7 +82,7 @@ public class AllScholar implements ScholarManager {
     private void search()
     {
         int is_null=db.scholar_dao().is_null();
-        if(is_null!=0)
+        if(is_null>=83)
             return;
         try {
             URL url = new URL("https://innovaapi.aminer.cn/predictor/api/v1/valhalla/highlight/get_ncov_expers_list?v=2");
@@ -98,6 +99,7 @@ public class AllScholar implements ScholarManager {
             JSONObject job = new JSONObject(buf);
             JSONArray jdata=job.getJSONArray("data");
             int size=jdata.length();
+            Log.d("fafafsize", String.valueOf(size));
             //for every person
             for(int i=0;i<jdata.length();i++)
             {
@@ -105,6 +107,7 @@ public class AllScholar implements ScholarManager {
                 if(db.scholar_dao().already_in(person.getString("id"))!=0)
                     continue;
                 Scholar_db s=new Scholar_db(person.getString("id"));
+                Log.d("fafafsize", person.getString("id"));
                 s.name=person.getString("name");
                 s.avatar=person.getString("avatar");
                 s.num_followed=person.getInt("num_followed");
@@ -121,11 +124,21 @@ public class AllScholar implements ScholarManager {
                 s.hindex=indices.getInt("hindex");
                 //profile
                 JSONObject profile=person.getJSONObject("profile");
-                s.posisition=profile.getString("position");
+                if(profile.has("position"))
+                    s.posisition=profile.getString("position");
+                else s.posisition=null;
                 s.affiliation=profile.getString("affiliation");
                 s.bio=profile.getString("bio");
-                s.edu=profile.getString("edu");
-                s.work=profile.getString("work");
+                if(profile.has("edu"))
+                    s.edu=profile.getString("edu");
+                else s.edu=null;
+                if(profile.has("work"))
+                    s.work=profile.getString("work");
+                else
+                {
+                    Log.d("fafafwork", person.getString("id"));
+                    s.work=null;
+                }
                 db.scholar_dao().insert(s);
             }
         } catch (MalformedURLException e) {
