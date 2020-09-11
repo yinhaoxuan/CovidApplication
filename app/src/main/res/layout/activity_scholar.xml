@@ -26,49 +26,49 @@
                     android:id="@+id/name"
                     android:layout_width="404dp"
                     android:layout_height="114dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/affiliation"
-                    android:layout_width="23dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/citation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/gindex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/hindex"
@@ -99,40 +99,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/diversity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/new_star"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
                 <TextView
                     android:id="@+id/sociability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/name"
-                    android:layout_marginTop="5dp"/>
+                    app:layout_constraintBottom_toBottomOf="@id/name" />
 
             </LinearLayout>
 
