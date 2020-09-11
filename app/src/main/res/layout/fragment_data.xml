@@ -7,17 +7,48 @@
     tools:context=".DataFragment"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/global"
-        tools:srcCompat="@drawable/global" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="290dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/china" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="243dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/global"
+            tools:srcCompat="@drawable/global" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="全球各国疫情统计图"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="243dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/china" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="全国各省疫情统计图"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+
 
 </LinearLayout>

@@ -52,7 +52,7 @@
             android:layout_width="285dp"
             android:layout_height="141dp"
             android:layout_marginLeft="100dp"
-            android:text="制作人：ABC"
+            android:text="制作人：尹昊萱\n                崔义元"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"

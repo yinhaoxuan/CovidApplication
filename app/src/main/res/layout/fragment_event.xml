@@ -24,14 +24,15 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <Button
+            android:id="@+id/edit_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:id="@+id/edit_button"
+            android:layout_weight="2.5"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:text="@string/edit"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            android:textStyle="bold"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
