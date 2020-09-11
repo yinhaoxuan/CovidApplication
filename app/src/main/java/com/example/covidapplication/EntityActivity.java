@@ -1,6 +1,7 @@
 package com.example.covidapplication;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,10 @@ public class EntityActivity extends AppCompatActivity {
             wikiView.setText("No wiki available");
         }
         ImageView imageView = findViewById(R.id.entity_picture);
-        imageView.setImageDrawable(entity.drawable);
+        if (entity.drawable != null) {
+            imageView.setImageBitmap(BitmapFactory.decodeByteArray(entity.drawable, 0, entity.drawable.length));
+
+        }
         TextView propertyView = findViewById(R.id.entity_properties);
         StringBuilder properties = new StringBuilder();
         for (Map.Entry<String, String> entry: entity.properties.entrySet()) {

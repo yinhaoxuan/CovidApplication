@@ -8,4 +8,9 @@ public class MyScholarManager implements ScholarManager{
         citationList.add(scholar);
         passedAwayList.add(scholar);
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }
