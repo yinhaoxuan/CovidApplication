@@ -2,6 +2,7 @@ package com.example.covidapplication;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -66,10 +67,12 @@ public class ScholarTabFragment extends Fragment {
         mContext = getContext();
         View view = inflater.inflate(R.layout.fragment_scholar_tab, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
-        ArrayList<Scholar> scholars = type == "citation" ? MainActivity.scholarManager.citationList : MainActivity.scholarManager.passedAwayList;
+        ArrayList<Scholar> scholars = type.equals("citation") ? MainActivity.scholarManager.citationList : MainActivity.scholarManager.passedAwayList;
+        Log.d("Scholar length", type + scholars.size());
         mAdapter = new ScholarListAdapter(this.getActivity(), scholars);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this.getContext()));
+//        new GetDataTask(getActivity()).execute();
         return view;
     }
 }

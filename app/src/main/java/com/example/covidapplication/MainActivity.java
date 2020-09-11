@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         eventManager = AllData.get_AllData(this);
+        scholarManager = AllScholar.get_AllScholar(this);
 //        scholarManager = AllScholar.get_AllScholar(this);
 
 //        placeManager = new AllPlace();
-//        new GetDataTask(this).execute();
 
 
         BottomNavigationView view = findViewById(R.id.bottom_navigation);

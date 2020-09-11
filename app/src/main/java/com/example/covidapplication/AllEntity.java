@@ -1,5 +1,7 @@
 package com.example.covidapplication;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
@@ -8,10 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,7 +25,7 @@ public class AllEntity implements EntityManager {
         ArrayList<Entity> entity=new ArrayList<Entity>();
         try {
             url = new URL("https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery?entity="+key);
-            Log.d("search entity", key);
+//            Log.d("search entity", key);
             HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             InputStream input = connect.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(input));
@@ -70,14 +69,16 @@ public class AllEntity implements EntityManager {
                     what.add(rr);
                 }
                 String img=sub.getString("img");
-                Drawable d=null;
+                byte[] d=null;
                 if(img=="null")
                 {}
                 else
                 {
                     URL u=new URL(img);
                     InputStream content=(InputStream)u.getContent();
-                    d=Drawable.createFromStream(content,"src");
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    BitmapFactory.decodeStream(content).compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    d = stream.toByteArray();
                 }
                 Entity now=new Entity(sub.getDouble("hot"),sub.getString("label"),sub.getString("url"),en,bai,zh,p,what,d);
                 entity.add(now);

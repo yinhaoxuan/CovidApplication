@@ -14,23 +14,20 @@ import java.util.ArrayList;
 
 public class GetDataTask extends AsyncTask<Void, Void, Void> {
 
-    private WeakReference<MainActivity> mActivity;
-    private ScholarManager mManager;
-    public GetDataTask(MainActivity activity) {
+//    WeakReference<ScholarTabFragment> mFragment;
+    public GetDataTask() {
         super();
-        mActivity = new WeakReference<>(activity);
+//        mFragment = new WeakReference<>(fragment);
     }
 
     @Override
     protected void onPostExecute(Void unused) {
-        MainActivity.scholarManager = mManager;
+//        mFragment.
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        mManager = AllScholar.get_AllScholar(mActivity.get());
-        Log.d("citation length", Integer.toString(mManager.citationList.size()));
-        Log.d("passedaway length", Integer.toString(mManager.passedAwayList.size()));
+        MainActivity.scholarManager.refresh();
         return null;
     }
 }

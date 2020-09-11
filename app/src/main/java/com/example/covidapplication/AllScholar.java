@@ -32,7 +32,11 @@ public class AllScholar implements ScholarManager {
             INSTANCE=new AllScholar(context);
         }
         //if nothing in db,read from url
-        INSTANCE.search();
+        return INSTANCE;
+    }
+    public void refresh() {
+
+//        INSTANCE.search();
         ArrayList<Scholar_db> st=new ArrayList<>();
         st.addAll((ArrayList<Scholar_db>) INSTANCE.db.scholar_dao().get_All());
         int size=st.size();
@@ -40,7 +44,6 @@ public class AllScholar implements ScholarManager {
         {
             INSTANCE.convert(st.get(i));
         }
-        return INSTANCE;
     }
     private void convert(Scholar_db sd)
     {
@@ -107,7 +110,7 @@ public class AllScholar implements ScholarManager {
                 if(db.scholar_dao().already_in(person.getString("id"))!=0)
                     continue;
                 Scholar_db s=new Scholar_db(person.getString("id"));
-                Log.d("fafafsize", person.getString("id"));
+//                Log.d("fafafsize", person.getString("id"));
                 s.name=person.getString("name");
                 s.avatar=person.getString("avatar");
                 s.num_followed=person.getInt("num_followed");
@@ -136,7 +139,7 @@ public class AllScholar implements ScholarManager {
                     s.work=profile.getString("work");
                 else
                 {
-                    Log.d("fafafwork", person.getString("id"));
+//                    Log.d("fafafwork", person.getString("id"));
                     s.work=null;
                 }
                 db.scholar_dao().insert(s);
