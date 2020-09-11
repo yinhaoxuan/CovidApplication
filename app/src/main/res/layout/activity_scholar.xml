@@ -14,7 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -22,64 +23,116 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/name" />
+                    android:id="@+id/name"
+                    android:layout_width="404dp"
+                    android:layout_height="114dp"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
+                    android:id="@+id/position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/position" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/affiliation"
+                    android:layout_width="23dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/affiliation" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/citation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/citation" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/gindex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/gindex" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/hindex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/hindex" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/followed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/followed" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/viewed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/viewed" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/activity" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/diversity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/diversity" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/new_star"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/new_star" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
                 <TextView
+                    android:id="@+id/sociability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/sociability" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/name"
+                    android:layout_marginTop="5dp"/>
 
             </LinearLayout>
 
@@ -87,38 +140,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/avatar"
-                android:contentDescription="@string/image" />
+                android:contentDescription="@string/image"
+                android:gravity="center"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/biology" />
+            android:text="@string/biology"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bio" />
+            android:text="@string/education"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/edu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/education" />
+            android:text="@string/work"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
+            android:id="@+id/work"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edu" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/work" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/work" />
+            android:textSize="22sp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
 

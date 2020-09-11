@@ -3,30 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
+
     <ImageView
+        android:id="@+id/scholar_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scholar_avatar"
         android:adjustViewBounds="true"
-        android:maxHeight="100dp"
-        android:maxWidth="100dp"
-        />
+        android:maxWidth="50dp"
+        android:maxHeight="50dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/scholar_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_name"/>
+            android:paddingTop="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/scholar_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_position"/>
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/scholar_index"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_index"/>
+            android:paddingBottom="5dp"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>
