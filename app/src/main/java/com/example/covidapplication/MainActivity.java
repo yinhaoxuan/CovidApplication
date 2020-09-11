@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //        scholarManager = AllScholar.get_AllScholar(this);
 
 //        placeManager = new AllPlace();
-        new GetDataTask(this).execute();
+//        new GetDataTask(this).execute();
 
 
         BottomNavigationView view = findViewById(R.id.bottom_navigation);
