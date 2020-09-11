@@ -8,10 +8,10 @@ public class Scholar implements Serializable {
     String name, id, posisition, affiliation, bio, edu, work;
     int citations, gindex, hindex, num_followed, num_viewed;
     double activity, diversity, newStar, sociability;
-    Drawable avatar;
+    String avatar;
     boolean is_passedaway;
 
-    public Scholar(String name, String id, String posisition, String affiliation, String bio, String edu, String work, int citations, int gindex, int hindex, int num_followed, int num_viewed, double activity, double diversity, double newStar, double sociability, Drawable avatar, boolean is_passedaway) {
+    public Scholar(String name, String id, String posisition, String affiliation, String bio, String edu, String work, int citations, int gindex, int hindex, int num_followed, int num_viewed, double activity, double diversity, double newStar, double sociability, String avatar, boolean is_passedaway) {
         this.name = name;
         this.id = id;
         this.posisition = posisition;

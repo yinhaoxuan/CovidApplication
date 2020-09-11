@@ -37,6 +37,7 @@ public class AllScholar implements ScholarManager {
     public void refresh() {
 
 //        INSTANCE.search();
+        Log.d("refresh", "begin");
         ArrayList<Scholar_db> st=new ArrayList<>();
         st.addAll((ArrayList<Scholar_db>) INSTANCE.db.scholar_dao().get_All());
         int size=st.size();
@@ -44,6 +45,7 @@ public class AllScholar implements ScholarManager {
         {
             INSTANCE.convert(st.get(i));
         }
+        Log.d("refresh", "end");
     }
     private void convert(Scholar_db sd)
     {
@@ -65,18 +67,18 @@ public class AllScholar implements ScholarManager {
         s.sociability=sd.sociability;
         s.is_passedaway=sd.is_passedaway;
         Drawable d=null;
-        if(sd.avatar!=null && sd.avatar!="")
-        {
-            try {
-                URL u = new URL(sd.avatar);
-                InputStream content=(InputStream)u.getContent();
-                d=Drawable.createFromStream(content,"src");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        if(sd.avatar!=null && sd.avatar!="")
+//        {
+//            try {
+//                URL u = new URL(sd.avatar);
+//                InputStream content=(InputStream)u.getContent();
+//                d=Drawable.createFromStream(content,"src");
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         s.avatar=d;
         citationList.add(s);
         if(s.is_passedaway)

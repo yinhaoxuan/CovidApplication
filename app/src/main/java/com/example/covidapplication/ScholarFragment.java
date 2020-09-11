@@ -35,7 +35,7 @@ public class ScholarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        new GetDataTask().execute();
+        new GetDataTask().execute();
         View view = inflater.inflate(R.layout.fragment_scholar, container, false);
         mTabLayout = view.findViewById(R.id.tab_layout);
         mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab_label_citation));
