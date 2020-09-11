@@ -15,7 +15,7 @@ public class ScholarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Scholar scholar = (Scholar) intent.getSerializableExtra("scholar");
         ImageView imageView = findViewById(R.id.avatar);
-        new AvatarTask(imageView, scholar.avatar);
+        new AvatarTask(imageView, scholar.avatar).execute();
         TextView nameView = findViewById(R.id.name);
         nameView.setText(scholar.name);
         TextView positionView = findViewById(R.id.position);
