@@ -59,6 +59,7 @@ public class AllPlace implements PlaceManager {
                 else if(all_con.length==2 && all_con[0].equals("China")){
                     name = all_con[1];
                     Place p=new Place(name,time,confirmed,cured,dead);
+                    System.out.println(name + "," + confirmed.get(confirmed.size() - 1));
                     provinceList.add(p);
                 }
             }

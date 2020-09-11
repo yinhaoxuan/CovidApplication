@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     public static EntityManager entityManager = new AllEntity();
     public static EventManager eventManager;
-    public static PlaceManager placeManager = new MyPlaceManager();
+    public static PlaceManager placeManager;
     public static ScholarManager scholarManager;
 
     @Override
@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        placeManager = new AllPlace();
+        new Thread() {
+            public void run() {
+                placeManager.getData();
+            }
+        }.start();
         eventManager = AllData.get_AllData(this);
         scholarManager = AllScholar.get_AllScholar(this);
 //        scholarManager = AllScholar.get_AllScholar(this);
