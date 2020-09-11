@@ -28,7 +28,6 @@ public class ScholarListAdapter extends RecyclerView.Adapter<ScholarListAdapter.
 
     class ScholarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final TextView mNameView, mPositionView, mIndexView;
-        public final ImageView mAvatar;
         final ScholarListAdapter mAdapter;
         public ScholarViewHolder(@NonNull View itemView, ScholarListAdapter adapter) {
             super(itemView);
@@ -68,7 +67,7 @@ public class ScholarListAdapter extends RecyclerView.Adapter<ScholarListAdapter.
                 "G-index: " + mCurrent.gindex +
                 "H-index: " + mCurrent.hindex;
         holder.mIndexView.setText(index);
-        holder.mAvatar.setImageDrawable(mCurrent.avatar);
+//        holder.mAvatar.setImageDrawable(mCurrent.avatar);
     }
 
     @Override

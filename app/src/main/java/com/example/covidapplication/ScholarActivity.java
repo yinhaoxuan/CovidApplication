@@ -1,6 +1,7 @@
 package com.example.covidapplication;
 
 import android.content.Intent;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ public class ScholarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scholar);
         Intent intent = getIntent();
         Scholar scholar = (Scholar) intent.getSerializableExtra("scholar");
+        ImageView imageView = findViewById(R.id.avatar);
+        new AvatarTask(imageView, scholar.avatar);
         TextView nameView = findViewById(R.id.name);
         nameView.setText(scholar.name);
         TextView positionView = findViewById(R.id.position);
