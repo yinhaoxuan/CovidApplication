@@ -35,7 +35,6 @@ public class ScholarListAdapter extends RecyclerView.Adapter<ScholarListAdapter.
             mNameView = itemView.findViewById(R.id.scholar_name);
             mPositionView = itemView.findViewById(R.id.scholar_position);
             mIndexView = itemView.findViewById(R.id.scholar_index);
-            mAvatar = itemView.findViewById(R.id.scholar_avatar);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
         }
