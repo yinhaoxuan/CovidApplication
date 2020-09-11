@@ -7,18 +7,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/scholar_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_name"/>
+            android:paddingTop="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/scholar_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_position"/>
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/scholar_index"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/scholar_index"/>
+            android:paddingBottom="5dp"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

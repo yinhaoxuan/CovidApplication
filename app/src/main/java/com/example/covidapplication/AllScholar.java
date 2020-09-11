@@ -66,20 +66,7 @@ public class AllScholar implements ScholarManager {
         s.newStar=sd.newStar;
         s.sociability=sd.sociability;
         s.is_passedaway=sd.is_passedaway;
-        Drawable d=null;
-//        if(sd.avatar!=null && sd.avatar!="")
-//        {
-//            try {
-//                URL u = new URL(sd.avatar);
-//                InputStream content=(InputStream)u.getContent();
-//                d=Drawable.createFromStream(content,"src");
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        s.avatar=d;
+        s.avatar=sd.avatar;
         citationList.add(s);
         if(s.is_passedaway)
             passedAwayList.add(s);
