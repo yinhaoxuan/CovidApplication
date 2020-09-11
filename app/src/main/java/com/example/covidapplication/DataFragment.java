@@ -47,6 +47,8 @@ public class DataFragment extends Fragment {
             countryBarList.add(new BarEntry(country.confirmed.get(country.confirmed.size() - 1), ++i));
 //            }
         }
+        Log.d("countrylist", Integer.toString(countryList.size()));
+        Log.d("countrybarlist", Integer.toString(countryBarList.size()));
         BarDataSet countryBarSet = new BarDataSet(countryBarList, "Country");
         BarData countryData = new BarData(countryBarSet);
         mCountryBar.setData(countryData);
