@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static EntityManager entityManager = new AllEntity();
     public static EventManager eventManager;
     public static PlaceManager placeManager = new MyPlaceManager();
-    public static ScholarManager scholarManager = new MyScholarManager();
+    public static ScholarManager scholarManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         eventManager = AllData.get_AllData(this);
+//        scholarManager = AllScholar.get_AllScholar(this);
 
 //        placeManager = new AllPlace();
-        new GetDataTask().execute();
+        new GetDataTask(this).execute();
 
 
         BottomNavigationView view = findViewById(R.id.bottom_navigation);
